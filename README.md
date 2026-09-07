@@ -25,8 +25,9 @@ Re-run `chezmoi apply` any time. Scripts are `run_once` or `run_onchange`.
 1. Generate an SSH key and add it to GitHub. Signing uses `~/.ssh/id_ed25519.pub`.
 2. `gh auth login` for github.com.
 3. Put tokens in `~/.secrets.zsh` (mode 600). chezmoi never tracks that file.
-4. Log into Cursor and Claude. MCP, skills, and hooks are not in this repo.
-5. Optional: `atuin login` to pull shell history.
+4. Log into Cursor and Claude. This repo copies editor settings, keybindings, and `~/.cursor/rules/pstack-models.mdc`. It does not copy MCP, oauth, or skills.
+5. Reinstall Cursor plugins `pstack` and `atlassian`. Reinstall Claude plugin `skill-creator`. Then clone personal skills into `~/.agents/skills` from their upstreams. Skip company-named skills in this public tree.
+6. Optional: `atuin login` to pull shell history.
 
 ## Work overlay
 
@@ -53,11 +54,12 @@ Keep this Mac's existing chezmoi clone as that overlay. Do not push it to github
 ## What you copy or log into
 
 - `~/.secrets.zsh`
-- `~/.ssh/` (new keys on the new laptop)
-- Cursor (`~/.cursor` has machine ids and a work MCP URL, leave it)
-- Claude (`~/.claude.json` has credentials)
-- Personal skills under `~/.claude/skills` and `~/.agents/skills`. Reinstall from their upstreams. Skip company-named skills here.
-- Bitwarden / 1Password, `gh` hosts other than github.com, AWS SSO
+- `~/.ssh/` (new keys on the new laptop). Public GitHub already uses `ghpublic_id_ed25519` on this Mac. Make a new key on Linux.
+- Cursor MCP and oauth. `~/.cursor/mcp.json` on this Mac points at a work server. Keep that in the private overlay, not here.
+- `~/.claude.json` (credentials). Do not copy it.
+- Personal skills under `~/.agents/skills`. Most `~/.claude/skills` entries are symlinks into that tree. Reinstall from upstreams.
+- Bitwarden, `gh` hosts other than github.com, AWS SSO
+- nvim mason LSPs. First `nvim` launch installs them.
 
 ## Checks
 

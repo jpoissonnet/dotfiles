@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+# {{ include "app/cursor/settings.json" | sha256sum }}
+src="{{ .chezmoi.sourceDir }}/app/cursor"
+{{- if eq .chezmoi.os "darwin" }}
+dest="{{ .chezmoi.homeDir }}/Library/Application Support/Cursor/User"
+key="cmd+i"
+{{- else }}
+dest="{{ .chezmoi.homeDir }}/.config/Cursor/User"
+key="ctrl+i"
+{{- end }}
+
+mkdir -p "$dest"
+cp "$src/settings.json" "$dest/settings.json"
+cat > "$dest/keybindings.json" <<EOF
+[
+    {
+        "key": "$key",
+        "command": "composerMode.agent"
+    }
+]
+EOF

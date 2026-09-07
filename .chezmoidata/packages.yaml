@@ -3,12 +3,15 @@ packages:
     brews:
       - atuin
       - bat
+      - eza
       - fd
       - fnm
       - fzf
       - gh
       - git
       - git-delta
+      - jq
+      - lazygit
       - neovim
       - ranger
       - ripgrep
@@ -20,12 +23,15 @@ packages:
       - atuin
       - bat
       - chezmoi
+      - eza
       - fd
       - fzf
       - git
       - git-delta
       - github-cli
+      - jq
       - kitty
+      - lazygit
       - neovim
       - openssh
       - ranger

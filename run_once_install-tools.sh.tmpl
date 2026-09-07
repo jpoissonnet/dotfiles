@@ -30,6 +30,11 @@ if command -v fnm >/dev/null 2>&1; then
   fi
 fi
 
+if ! command -v uv >/dev/null 2>&1; then
+  echo "Installing uv..."
+  curl -fsSL https://astral.sh/uv/install.sh | sh
+fi
+
 if ! command -v stylua >/dev/null 2>&1 && command -v cargo >/dev/null 2>&1; then
   echo "Installing stylua..."
   cargo install stylua --locked
