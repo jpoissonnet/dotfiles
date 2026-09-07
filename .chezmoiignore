@@ -2,3 +2,8 @@ README.md
 scripts/**
 .audit/**
 app/**
+.git/**
+.gitignore
+{{ if ne .chezmoi.os "darwin" }}
+dot_aerospace.toml
+{{ end }}
