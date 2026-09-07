@@ -15,7 +15,7 @@ cli="$(printf '%s%s-cli' bed rock)"
 pairs=(
   "$HOME/.config/git/work.config:dot_config/git/work.config"
   "$HOME/.zshrc.d/${cli}.zsh:dot_zshrc.d/${cli}.zsh"
-  "$HOME/.zshrc.d/empty_cert.zsh:dot_zshrc.d/empty_cert.zsh"
+  "$HOME/.zshrc.d/cert.zsh:dot_zshrc.d/empty_cert.zsh"
   "$HOME/.zshrc.d/work.zsh:dot_zshrc.d/work.zsh"
 )
 
@@ -23,7 +23,7 @@ applied=0
 for pair in "${pairs[@]}"; do
   dest="${pair%%:*}"
   src="${pair##*:}"
-  if [ -e "$work/$src" ]; then
+  if [ -e "$work/$src" ] || [ -e "$work/${src}.tmpl" ]; then
     chezmoi apply --source "$work" "$dest"
     applied=$((applied + 1))
   fi

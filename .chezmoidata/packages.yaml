@@ -9,6 +9,7 @@ packages:
       - fzf
       - gh
       - git
+      - go
       - git-delta
       - jq
       - lazygit
@@ -30,6 +31,7 @@ packages:
       - git
       - git-delta
       - github-cli
+      - go
       - jq
       - kitty
       - lazygit
