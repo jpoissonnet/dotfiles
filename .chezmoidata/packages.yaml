@@ -21,6 +21,7 @@ packages:
     arch:
       - age
       - atuin
+      - base-devel
       - bat
       - chezmoi
       - eza
@@ -37,5 +38,6 @@ packages:
       - ranger
       - ripgrep
       - ttf-jetbrains-mono-nerd
+      - unzip
       - zoxide
       - zsh

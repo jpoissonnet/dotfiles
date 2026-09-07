@@ -2,5 +2,5 @@
   command = "nvim"
 
 [data]
-  git_name = "jules poissonnet"
-  git_email = "jpoissonnet@users.noreply.github.com"
+  git_name = {{ promptStringOnce "gitName" "Git name" | quote }}
+  git_email = {{ promptStringOnce "gitEmail" "Git email" | quote }}
