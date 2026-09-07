@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+
+*.iml
+node_modules/
+.next/
+next-env.d.ts
+.swc/
+.DS_STORE
+
+.omo/**
+**/.claude/settings.local.json
+.audit/
+.slim/

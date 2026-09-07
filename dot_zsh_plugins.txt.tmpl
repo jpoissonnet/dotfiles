@@ -1,0 +1,32 @@
+#!/bin/zsh
+#
+# .zsh_plugins.txt - antidote plugins file
+
+mattmc3/zephyr path:plugins/color
+mattmc3/zephyr path:plugins/completion
+mattmc3/zephyr path:plugins/confd
+mattmc3/zephyr path:plugins/compstyle
+mattmc3/zephyr path:plugins/editor
+mattmc3/zephyr path:plugins/environment
+{{- if eq .chezmoi.os "darwin" }}
+mattmc3/zephyr path:plugins/macos
+{{- end }}
+mattmc3/zephyr path:plugins/utility
+mattmc3/zephyr path:plugins/zfunctions
+
+getantidote/use-omz        # handle OMZ dependencies
+ohmyzsh/ohmyzsh path:lib   # load OMZ's library
+
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/terraform
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/kubectl
+
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+
+aloxaf/fzf-tab
+
+romkatv/powerlevel10k
+
+MenkeTechnologies/zsh-expand

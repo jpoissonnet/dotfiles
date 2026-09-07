@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "darwin" }}
+map cmd+backspace send_text all \x17
+{{- else }}
+map ctrl+backspace send_text all \x17
+{{- end }}
+
+include current-theme.conf
+
+font_family      JetBrainsMono Nerd Font Mono
+bold_font        JetBrainsMono Nerd Font Mono Extra Bold
+bold_italic_font JetBrainsMono Nerd Font Mono Extra Bold Italic
+font_size 13.0

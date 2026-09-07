@@ -1,0 +1,36 @@
+#!/bin/bash
+set -euo pipefail
+
+if ! command -v rustup >/dev/null 2>&1; then
+  echo "Installing Rust via rustup..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+fi
+
+if ! command -v bun >/dev/null 2>&1; then
+  echo "Installing Bun..."
+  curl -fsSL https://bun.sh/install | bash
+fi
+
+if ! command -v deno >/dev/null 2>&1; then
+  echo "Installing Deno..."
+  curl -fsSL https://deno.land/install.sh | sh
+fi
+
+if ! command -v fnm >/dev/null 2>&1; then
+  echo "Installing fnm..."
+  curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+fi
+
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --shell bash)"
+  if ! command -v pnpm >/dev/null 2>&1; then
+    echo "Enabling pnpm via corepack..."
+    corepack enable
+    corepack prepare pnpm@latest --activate
+  fi
+fi
+
+if ! command -v stylua >/dev/null 2>&1 && command -v cargo >/dev/null 2>&1; then
+  echo "Installing stylua..."
+  cargo install stylua --locked
+fi

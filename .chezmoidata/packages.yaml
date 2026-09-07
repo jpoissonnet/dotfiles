@@ -1,0 +1,35 @@
+packages:
+  darwin:
+    brews:
+      - atuin
+      - bat
+      - fd
+      - fnm
+      - fzf
+      - gh
+      - git
+      - git-delta
+      - neovim
+      - ranger
+      - ripgrep
+      - stylua
+      - zoxide
+  linux:
+    arch:
+      - age
+      - atuin
+      - bat
+      - chezmoi
+      - fd
+      - fzf
+      - git
+      - git-delta
+      - github-cli
+      - kitty
+      - neovim
+      - openssh
+      - ranger
+      - ripgrep
+      - ttf-jetbrains-mono-nerd
+      - zoxide
+      - zsh

@@ -1,0 +1,30 @@
+{{- if eq .chezmoi.os "darwin" }}
+# Added by Toolbox App
+export PATH="$PATH:{{ .chezmoi.homeDir }}/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Added by OrbStack: command-line tools and integration
+[[ -f ~/.orbstack/shell/init.zsh ]] && source ~/.orbstack/shell/init.zsh
+
+# Homebrew - detect architecture
+{{- if eq .chezmoi.arch "arm64" }}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{- else }}
+eval "$(/usr/local/bin/brew shellenv)"
+{{- end }}
+
+# MacPorts (only if installed)
+if [[ -d /opt/local ]]; then
+    export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+    export MANPATH="/opt/local/share/man:$MANPATH"
+fi
+
+# Python (use latest installed version from framework)
+if [[ -d /Library/Frameworks/Python.framework/Versions ]]; then
+    PYTHON_VERSION=$(ls -1 /Library/Frameworks/Python.framework/Versions 2>/dev/null | grep -E '^[0-9]+\.[0-9]+$' | sort -V | tail -1)
+    if [[ -n "$PYTHON_VERSION" ]]; then
+        export PATH="/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION/bin:$PATH"
+    fi
+fi
+{{- else }}
+# Linux: user bins are set in ~/.zshrc. Distro packages land on the default PATH.
+{{- end }}

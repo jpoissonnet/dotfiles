@@ -1,0 +1,48 @@
+# ===========================================================================
+# .gitconfig — managed by chezmoi
+# ===========================================================================
+
+[user]
+    name = {{ .git_name }}
+    email = {{ .git_email }}
+    signingkey = ~/.ssh/id_ed25519.pub
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    autocrlf = input
+    pager = delta
+    excludesFile = {{ .chezmoi.homeDir }}/.gitignore
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+    default = current
+
+[fetch]
+    prune = true
+
+[rerere]
+    enabled = true
+
+[gpg]
+    format = ssh
