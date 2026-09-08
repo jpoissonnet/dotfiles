@@ -1,0 +1,3 @@
+pnpm_home:
+  darwin: Library/pnpm
+  linux: .local/share/pnpm

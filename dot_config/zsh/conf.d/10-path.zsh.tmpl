@@ -1,0 +1,19 @@
+{{- $pnpmHome := index .pnpm_home .chezmoi.os -}}
+{{- if not $pnpmHome }}{{ fail (printf "pnpm_home: no entry for %s" .chezmoi.os) }}{{ end -}}
+export BUN_INSTALL="$HOME/.bun"
+export PNPM_HOME="$HOME/{{ $pnpmHome }}"
+
+# Each dir is guarded: a tool may come from the package manager instead, in
+# which case its own bin dir does not exist and the package prefix is already on
+# PATH. Entries are prepended, so the LAST one listed ends up highest priority.
+for d in \
+  "$HOME/projects/home-control/bin" \
+  "$HOME/.local/share/fnm" \
+  "$PNPM_HOME" \
+  "$PNPM_HOME/bin" \
+  "$BUN_INSTALL/bin" \
+  "$HOME/.deno/bin" \
+  "$HOME/.cargo/bin"
+do
+  [[ -d $d ]] && path=("$d" ${path:#"$d"})
+done
