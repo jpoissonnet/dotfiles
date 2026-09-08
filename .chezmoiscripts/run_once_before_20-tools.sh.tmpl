@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+
+# rustup, fnm and the CLI tools are packages now. What is left is the state the
+# packages do not carry: a Rust toolchain, a Node version, and pnpm.
+
+# Node ignores the system trust store, so behind a TLS-inspecting proxy (corp
+# SSE) corepack dies with "self-signed certificate in certificate chain" while
+# curl and the package manager are fine. This runs in the before phase, so no
+# shell config exists yet to set it.
+if [[ -z ${NODE_EXTRA_CA_CERTS:-} && -r /etc/ssl/certs/ca-certificates.crt ]]; then
+  export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+fi
+
+if command -v rustup >/dev/null 2>&1 && ! rustup show active-toolchain >/dev/null 2>&1; then
+  echo "Installing the default Rust toolchain..."
+  rustup default stable
+fi
+
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --shell bash)"
+
+  if ! command -v node >/dev/null 2>&1; then
+    echo "Installing Node via fnm..."
+    fnm install --lts
+    eval "$(fnm env --shell bash)"
+  fi
+
+  if command -v node >/dev/null 2>&1 && ! command -v pnpm >/dev/null 2>&1; then
+    echo "Enabling pnpm via corepack..."
+    corepack enable
+    corepack prepare pnpm@latest --activate
+  fi
+fi

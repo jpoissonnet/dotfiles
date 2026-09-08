@@ -2,21 +2,26 @@ packages:
   darwin:
     brews:
       - atuin
+      - awscli
       - bat
+      - bun
+      - deno
       - eza
       - fd
       - fnm
       - fzf
       - gh
       - git
-      - go
       - git-delta
+      - go
       - jq
       - lazygit
       - neovim
       - ranger
       - ripgrep
+      - rustup
       - stylua
+      - uv
       - zoxide
   linux:
     arch:
@@ -27,6 +32,7 @@ packages:
       - chezmoi
       - eza
       - fd
+      - fnm
       - fzf
       - git
       - git-delta
@@ -39,7 +45,10 @@ packages:
       - openssh
       - ranger
       - ripgrep
+      - rustup
+      - stylua
       - ttf-jetbrains-mono-nerd
       - unzip
+      - uv
       - zoxide
       - zsh

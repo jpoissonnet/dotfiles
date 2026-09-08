@@ -1,9 +1,18 @@
 README.md
-scripts/**
-.audit/**
+docs/**
 app/**
-.git/**
-.gitignore
+
+{{/* Patterns match TARGET names, so dot_ prefixes are already resolved. */}}
 {{ if ne .chezmoi.os "darwin" }}
-dot_aerospace.toml
+.aerospace.toml
+{{ end }}
+{{ if not (lookPath "brew") }}
+.chezmoiscripts/10-packages-darwin.sh
+{{ end }}
+{{ if not (lookPath "pacman") }}
+.chezmoiscripts/10-packages-arch.sh
+.chezmoiscripts/15-tools-linux.sh
+{{ end }}
+{{ if not .work }}
+.chezmoiscripts/90-work.sh
 {{ end }}

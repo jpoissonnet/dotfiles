@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+# -Syu, never a bare -S: a stale package DB serves 404s for anything the mirror
+# has since rebuilt, and -Sy without -u leaves a partial upgrade behind.
+# --disable-download-timeout: the ARM mirrors stall often enough that pacman's
+# low-speed cutoff aborts an otherwise fine transfer.
+sudo pacman -Syu --needed --noconfirm --disable-download-timeout \
+{{ range .packages.linux.arch -}}
+  {{ . }} \
+{{ end }}
