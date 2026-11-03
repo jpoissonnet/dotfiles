@@ -12,5 +12,4 @@ fi
 (( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd cd)"
 
-[[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
 [[ -x "$HOME/.local/bin/terraform" ]] && complete -o nospace -C "$HOME/.local/bin/terraform" terraform

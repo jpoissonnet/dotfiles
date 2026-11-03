@@ -1,6 +1,5 @@
 {{- $pnpmHome := index .pnpm_home .chezmoi.os -}}
 {{- if not $pnpmHome }}{{ fail (printf "pnpm_home: no entry for %s" .chezmoi.os) }}{{ end -}}
-export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/{{ $pnpmHome }}"
 
 # Each dir is guarded: a tool may come from the package manager instead, in
@@ -11,8 +10,6 @@ for d in \
   "$HOME/.local/share/fnm" \
   "$PNPM_HOME" \
   "$PNPM_HOME/bin" \
-  "$BUN_INSTALL/bin" \
-  "$HOME/.deno/bin" \
   "$HOME/.cargo/bin"
 do
   [[ -d $d ]] && path=("$d" ${path:#"$d"})
