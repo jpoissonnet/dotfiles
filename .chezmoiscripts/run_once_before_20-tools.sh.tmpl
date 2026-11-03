@@ -28,7 +28,7 @@ if command -v fnm >/dev/null 2>&1; then
 
   if command -v node >/dev/null 2>&1 && ! command -v pnpm >/dev/null 2>&1; then
     echo "Enabling pnpm via corepack..."
-    corepack enable
-    corepack prepare pnpm@latest --activate
+    sudo corepack enable
+    sudo corepack prepare pnpm@latest --activate
   fi
 fi
