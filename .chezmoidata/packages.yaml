@@ -4,9 +4,6 @@ packages:
       - atuin
       - awscli
       - bat
-      - bun
-      - deno
-      - eza
       - fd
       - fnm
       - fzf
@@ -17,7 +14,6 @@ packages:
       - jq
       - lazygit
       - neovim
-      - ranger
       - ripgrep
       - rustup
       - stylua
@@ -30,7 +26,6 @@ packages:
       - base-devel
       - bat
       - chezmoi
-      - eza
       - fd
       - fnm
       - fzf
@@ -43,12 +38,10 @@ packages:
       - lazygit
       - neovim
       - openssh
-      - ranger
       - ripgrep
       - rustup
       - stylua
       - ttf-jetbrains-mono-nerd
-      - unzip
       - uv
       - zoxide
       - zsh
